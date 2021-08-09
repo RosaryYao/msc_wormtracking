@@ -47,39 +47,72 @@ def make_mask(d_x, d_y, v_x, v_y, well, worm_index):
     ImageDraw.Draw(img).polygon(polygon, outline=worm_index, fill=worm_index)
 
     # Define well coordinates
-    if well == 'D4' or well == 'D8':  # TODO: edit here!!! 
+    if well == 'D4': 
         mask = np.array(img)[180:710, 160:690]
-    elif well == 'D3' or well == 'D7':
+    elif well == 'D3':
         mask = np.array(img)[180:710, 880:1410]
-    elif well == 'D2' or well == 'D6':
+    elif well == 'D2':
         mask = np.array(img)[180:710, 1600:2130]
-    elif well == 'D1' or well == 'D5':
+    elif well == 'D1':
         mask = np.array(img)[180:710, 2320:2850]
-    elif well == 'C4' or well == 'C8':
+    elif well == 'C4':
         mask = np.array(img)[895:1425, 160:690]
-    elif well == 'C3' or well == 'C7':
+    elif well == 'C3':
         mask = np.array(img)[895:1425, 880:1410]
-    elif well == 'C2' or well == 'C6':
+    elif well == 'C2':
         mask = np.array(img)[895:1425, 1600:2130]
-    elif well == 'C1' or well == 'C5':
+    elif well == 'C1':
         mask = np.array(img)[895:1425, 2320:2850]
-    elif well == 'B4' or well == 'B8':
+    elif well == 'B4':
         mask = np.array(img)[1620:2150, 160:690]
-    elif well == 'B3' or well == 'B7':
+    elif well == 'B3':
         mask = np.array(img)[1620:2150, 880:1410]
-    elif well == 'B2' or well == 'B6':
+    elif well == 'B2':
         mask = np.array(img)[1620:2150, 1600:2130]
-    elif well == 'B1' or well == 'B5':
+    elif well == 'B1':
         mask = np.array(img)[1620:2150, 2320:2850]
-    elif well == 'A4' or well == 'A8':
+    elif well == 'A4':
         mask = np.array(img)[2340:2870, 180:710]
-    elif well == 'A3' or well == 'A7':
+    elif well == 'A3':
         mask = np.array(img)[2340:2870, 880:1410]
-    elif well == 'A2' or well == 'A6':
+    elif well == 'A2':
         mask = np.array(img)[2340:2870, 1600:2130]
-    elif well == 'A1' or well == 'A5':
+    elif well == 'A1':
         mask = np.array(img)[2340:2870, 2320:2850]
-
+    elif well == 'D8':
+        mask = np.array(img)[180:720, 180:710]
+    elif well == 'D7':
+        mask = np.array(img)[180:720, 900:1430]
+    elif well == 'D6':
+        mask = np.array(img)[180:720, 1620:2150]
+    elif well == 'D5':
+        mask = np.array(img)[180:720, 2340:2870]
+    elif well == 'C8':
+        mask = np.array(img)[910:1440, 180:710]
+    elif well == 'C7':
+        mask = np.array(img)[910:1440, 900:1430]
+    elif well == 'C6':
+        mask = np.array(img)[910:1440, 1620:2150]
+    elif well == 'C5':
+        mask = np.array(img)[910:1440, 2340:2870]
+    elif well == 'B8':
+        mask = np.array(img)[1630: 2160, 180:710]
+    elif well == 'B7':
+        mask = np.array(img)[1630: 2160, 900:1430]
+    elif well == 'B6':
+        mask = np.array(img)[1630: 2160, 1620:2150]
+    elif well == 'B5':
+        mask = np.array(img)[1630: 2160, 2340:2870]
+    elif well == 'A8':
+        mask = np.array(img)[2350: 2880, 180:710]
+    elif well == 'A7':
+        mask = np.array(img)[2350: 2880, 900:1430]
+    elif well == 'A6':
+        mask = np.array(img)[2350: 2880, 1620:2150]
+    elif well == 'A5':
+        mask = np.array(img)[2350: 2880, 2340:2870]
+        
+        
     mask_cp = np.copy(mask)
     mask_cp = mask_cp.astype(np.uint16)
     if worm_index != 255:
