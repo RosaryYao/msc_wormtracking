@@ -110,7 +110,40 @@ def make_mask(d_x, d_y, v_x, v_y, well, worm_index):
         mask = np.array(img)[2350: 2880, 1620:2150]
     elif well == 'A5':
         mask = np.array(img)[2350: 2880, 2340:2870]
-        
+    #-----------------------------------------------
+    elif well == 'D12':
+        mask = np.array(img)[180:710, 140:670]
+    elif well == 'D11':
+        mask = np.array(img)[180:710, 860:1390]
+    elif well == 'D10':
+        mask = np.array(img)[180:710, 1590:2120]
+    elif well == 'D9':
+        mask = np.array(img)[180:710, 2300:2830]
+    elif well == 'C12':
+        mask = np.array(img)[900:1430, 140:670]
+    elif well == 'C11':
+        mask = np.array(img)[900:1430, 860:1390]
+    elif well == 'C10':
+        mask = np.array(img)[900:1430, 1590:2120]
+    elif well == 'C9':
+        mask = np.array(img)[900:1430, 2300:2830]
+    elif well == 'B12':
+        mask = np.array(img)[1620:2150, 140:670]
+    elif well == 'B11':
+        mask = np.array(img)[1620:2150, 860:1390]
+    elif well == 'B10':
+        mask = np.array(img)[1620:2150, 1590:2120]
+    elif well == 'B9':
+        mask = np.array(img)[1620:2150, 2300:2830]
+    elif well == 'A12':
+        mask = np.array(img)[2340:2870, 140:670]
+    elif well == 'A11':
+        mask = np.array(img)[2340:2870, 860:1390]
+    elif well == 'A10':
+        mask = np.array(img)[2340:2870, 1590:2120]
+    elif well == 'A9':
+        mask = np.array(img)[2340:2870, 2300:2830]
+    #-----------------------------------------------
         
     mask_cp = np.copy(mask)
     mask_cp = mask_cp.astype(np.uint16)
