@@ -6,7 +6,6 @@ import time
 import os
 
 def make_dorsal_ventral_coor(dorsal, ventral, skeleton_id):
-
     d_x = []
     d_y = []
     v_x = []
@@ -80,13 +79,13 @@ def make_mask(d_x, d_y, v_x, v_y, well, worm_index):
     elif well == 'A1':
         mask = np.array(img)[2340:2870, 2320:2850]
     elif well == 'D8':
-        mask = np.array(img)[180:720, 180:710]
+        mask = np.array(img)[180:710, 180:710]
     elif well == 'D7':
-        mask = np.array(img)[180:720, 900:1430]
+        mask = np.array(img)[180:710, 900:1430]
     elif well == 'D6':
-        mask = np.array(img)[180:720, 1620:2150]
+        mask = np.array(img)[180:710, 1620:2150]
     elif well == 'D5':
-        mask = np.array(img)[180:720, 2340:2870]
+        mask = np.array(img)[180:710, 2340:2870]
     elif well == 'C8':
         mask = np.array(img)[910:1440, 180:710]
     elif well == 'C7':
