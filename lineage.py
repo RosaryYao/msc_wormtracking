@@ -36,12 +36,11 @@ def make_lineage(traj, well_dict, well, frame_infotxt_dir, mask_npy, suffix):
             if worm in unique_pixels:
                 frame_list.append(i)
 
-        nested_dict = {}
         #nested_dict['label'] = int(worm)
         nested_dict['frames'] = frame_list
         nested_dict['daughters'] = []
-        nested_dict['capped'] = False
-        nested_dict['frame-div'] = None
+        #nested_dict['capped'] = False
+        #nested_dict['frame-div'] = None
         nested_dict['parent'] = None
 
         lineages[int(worm)] = nested_dict
