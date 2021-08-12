@@ -15,7 +15,11 @@ from matplotlib import cm
 from matplotlib.colors import ListedColormap, LinearSegmentedColormap
 import shutil
 
-def plot_gif(np_array, output_fn, sequential=False):
+def plot_gif(np_array, output_fn, raw=False, sequential=False):
+    
+    if raw == True:
+        sequential = True  # So will not change the original colors!    
+        print("Processing raw video.")
     
     if sequential == False:
         # If sequential is False, need to substitute worm indices into sequential for easy colouring
@@ -46,7 +50,11 @@ def plot_gif(np_array, output_fn, sequential=False):
         masked_array = np.ma.masked_where(mask == value, mask)
 
         #cmap = mpl.cm.get_cmap("spring")
-        cmap = mpl.cm.get_cmap("tab20").copy()
+        if raw == False:
+            cmap = mpl.cm.get_cmap("tab20").copy()
+        elif raw == True:
+            cmap = mpl.cm.get_cmap("spring").copy()
+            
         cmap.set_bad(color='black')
 
         plt.imshow(masked_array, cmap=cmap)
