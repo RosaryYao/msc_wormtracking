@@ -15,19 +15,27 @@ from matplotlib import cm
 from matplotlib.colors import ListedColormap, LinearSegmentedColormap
 import shutil
 
-def plot_gif(np_array, output_fn):
+def plot_gif(np_array, output_fn, sequential=False):
+    
+    if sequential == False:
+        # If sequential is False, need to substitute worm indices into sequential for easy colouring
+        ## Check the unique values in the np arrays - the original worm indices
+        uniques_original = list(np.unique(np_array))[1:]  # [1:] to omit values == '0'
+        print('unique_worm_ids: ', uniques_original)
+        sequential_ids = range(1, len(uniques_original)+1)
+        for i, original in enumerate(uniques_original):
+            np_array[np_array == uniques_original[i]] = sequential_ids[i]  # Update stacked_array with sequential worm_ids
+        print('sequential ids: ', list(np.unique(np_array))[1:])
+    
     mpl.rcParams['image.interpolation'] = 'none'  # Prevent mpl smoothes the edges
     os.mkdir("pic_temporary")  # To temporarily store the files
-
-    #spring = cm.get_cmap('spring', 256)
-    #newcolors = spring(np.linspace(0, 256, 256))
-    #black = np.array([0/256, 0/256, 0/256, 1])
-    #newcolors[:1, :] = black
-    #newcmp = ListedColormap(newcolors)
 
     pic_list = []
     flag = 0
 
+    np_array[:, 0:2, 0:2] = 10
+    np_array[:, 528:530, 528:530] = 1
+    
     for i in range(np_array.shape[0]):
         #plt.imshow(np_array[i], cmap=newcmp)
         mask = np_array[i]
@@ -38,7 +46,7 @@ def plot_gif(np_array, output_fn):
         masked_array = np.ma.masked_where(mask == value, mask)
 
         #cmap = mpl.cm.get_cmap("spring")
-        cmap = mpl.cm.get_cmap("spring").copy()
+        cmap = mpl.cm.get_cmap("tab20").copy()
         cmap.set_bad(color='black')
 
         plt.imshow(masked_array, cmap=cmap)
