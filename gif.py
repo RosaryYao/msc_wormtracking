@@ -15,7 +15,7 @@ from matplotlib import cm
 from matplotlib.colors import ListedColormap, LinearSegmentedColormap
 import shutil
 
-def plot_gif(np_array, output_fn, raw=False, sequential=False):
+def plot_gif(np_array, output_fn, raw=False, sequential=False, interpolation='none'):
     
     if raw == True:
         sequential = True  # So will not change the original colors!    
@@ -31,7 +31,7 @@ def plot_gif(np_array, output_fn, raw=False, sequential=False):
             np_array[np_array == uniques_original[i]] = sequential_ids[i]  # Update stacked_array with sequential worm_ids
         print('sequential ids: ', list(np.unique(np_array))[1:])
     
-    mpl.rcParams['image.interpolation'] = 'none'  # Prevent mpl smoothes the edges
+    mpl.rcParams['image.interpolation'] = interpolation  # Prevent mpl smoothes the edges
     os.mkdir("pic_temporary")  # To temporarily store the files
 
     pic_list = []
@@ -129,5 +129,30 @@ def plot_gif_more(np_array, output_fn, raw=False, sequential=False):
             writer.append_data(image)
 
     # Remove the temporary file
-    shutil.rmtree("pic_temporary")    
+    shutil.rmtree("pic_temporary")   
+    
+    
+    
+def plot_pic(np_array, output_fn, raw=False, sequential=False):    
+    mpl.rcParams['image.interpolation'] = 'none'  # Prevent mpl smoothes the edges
+    
+    np_array[0:2, 0:2] = 10
+    np_array[528:530, 528:530] = 1
+
+    mask = np_array
+    mask = np.where(mask==0, -1, mask)
+
+    value = -1
+    masked_array = np.ma.masked_where(mask == value, mask)
+    cmap = mpl.cm.get_cmap("tab20").copy()
+    cmap.set_bad(color='black')
+    plt.imshow(masked_array, cmap=cmap)
+    plt.savefig(output_fn)
+
+    
+    
+    
+    
+    
+    
 
