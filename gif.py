@@ -148,6 +148,22 @@ def plot_pic(np_array, output_fn, raw=False, sequential=False):
     cmap.set_bad(color='black')
     plt.imshow(masked_array, cmap=cmap)
     plt.savefig(output_fn)
+    
+def plot_tierpsy_pic(array, output_fn, raw=False, sequential=False):
+
+    uniques_original = list(np.unique(array))[1:]  # [1:] to omit values == '0'
+    print('unique_worm_ids: ', uniques_original)
+    sequential_ids = range(2, len(uniques_original)+2)
+
+    array[0:2, 0:2] = 10
+    array[528:530, 528:530] = 1
+    for i, original in enumerate(uniques_original):
+        array[array == uniques_original[i]] = sequential_ids[i]  # Update stacked_array with sequential worm_ids
+    print('sequential ids: ', list(np.unique(array))[1:])
+
+    plt.imshow(array, cmap="gist_ncar")
+    plt.savefig(output_fn)
+    
 
     
     
